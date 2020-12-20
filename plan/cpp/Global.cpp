@@ -2,7 +2,6 @@
 #include "../hpp/Global.hpp"
 #include <QSize>
 #include <QString>
-#include <QObject>
 #include <QFile>
 #include <QDir>
 
@@ -12,13 +11,13 @@ QString dialogTitle = QObject::tr("计划清单");
 QString dialog_selectFolderPart_labelText = QObject::tr("资源路径");
 QString dialog_selectFolderPart_btnText = QObject::tr("选择");
 
-QString getLastSavedResourcePath() noexcept
+QString readLastSavedResourcePath() noexcept
 {
     QString path;
 
-    QString __file = "/info/resource-path.txt";
-    QString __path = QDir::currentPath();
-    __file = __path.append(__file);
+    QString __file = "resource-path.txt";
+    QString __path = QDir::currentPath() + QString("/info/");
+    __file = __path + __file;
 
     QFile file(__file);
 
@@ -35,4 +34,26 @@ QString getLastSavedResourcePath() noexcept
     }
 
     return path;
+}
+
+void writeSelectedResourcePath(const QString& path) noexcept
+{
+    QString __file = "resource-path.txt";
+    QString __path = QDir::currentPath() + QString("/info/");
+    __file = __path + __file;
+
+    QDir dir;
+
+    if (!dir.exists(__path))
+    {
+        dir.mkpath(__path);
+    }
+
+    QFile file(__file);
+
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
+    {
+        file.write(path.toUtf8());
+        file.close();
+    }
 }

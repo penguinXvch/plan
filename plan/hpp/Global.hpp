@@ -11,6 +11,7 @@ extern QString dialogTitle;
 extern QString dialog_selectFolderPart_labelText;
 extern QString dialog_selectFolderPart_btnText;
 
-QString getLastSavedResourcePath() noexcept;
+QString readLastSavedResourcePath() noexcept;
+void writeSelectedResourcePath(const QString& path) noexcept;
 
 #endif // GLOBAL_HPP

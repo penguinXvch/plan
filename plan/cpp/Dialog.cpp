@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QTextEdit>
 #include <QPushButton>
+#include <QFileDialog>
 
 Dialog::Dialog(QWidget *parent) noexcept
     : QDialog(parent)
@@ -53,6 +54,7 @@ void Dialog::__initSelectFolderPart() noexcept
 {
     __initSelectFolderPart_createCtrls();
     __initSelectFolderPart_decorateCtrls();
+    __initSelectFolderPart_connectCtrlsEvents();
     __initSelectFolderPart_layoutCtrls();
 }
 
@@ -67,8 +69,28 @@ void Dialog::__initSelectFolderPart_createCtrls() noexcept
 void Dialog::__initSelectFolderPart_decorateCtrls() noexcept
 {
     __selectFolderPart_labelCtrl_->setText(dialog_selectFolderPart_labelText);
-    __selectFolderPart_showPathCtrl_->setText(getLastSavedResourcePath());
+    __selectFolderPart_showPathCtrl_->setText(readLastSavedResourcePath());
     __selectFolderPart_btnCtrl_->setText(dialog_selectFolderPart_btnText);
+}
+
+void Dialog::__initSelectFolderPart_connectCtrlsEvents() noexcept
+{
+    connect(__selectFolderPart_btnCtrl_, &QPushButton::clicked, [this]()
+    {
+        QFileDialog::Options options =
+                QFileDialog::ShowDirsOnly           |
+                QFileDialog::DontResolveSymlinks    |
+                QFileDialog::HideNameFilterDetails  |
+                QFileDialog::DontUseSheet           |
+                QFileDialog::ReadOnly;
+        QString path = QFileDialog::getExistingDirectory(this, QObject::tr("选择目录"), QString(), options);
+
+        if (!path.isEmpty())
+        {
+            __selectFolderPart_showPathCtrl_->setText(path);
+            writeSelectedResourcePath(path);
+        }
+    });
 }
 
 void Dialog::__initSelectFolderPart_layoutCtrls() noexcept
