@@ -4,6 +4,8 @@
 
 #include <QWidget>
 
+class QListWidget;
+
 class ItemCompDisplay : public QWidget
 {
     Q_OBJECT
@@ -11,6 +13,9 @@ class ItemCompDisplay : public QWidget
 public:
     explicit ItemCompDisplay(QWidget* parent = nullptr) noexcept;
     ~ItemCompDisplay() noexcept;
+
+private:
+    QListWidget* __list_ = nullptr;
 };
 
 #endif // ITEMCOMPDISPLAY_HPP
