@@ -5,7 +5,7 @@
 #include <QFile>
 #include <QDir>
 
-QSize dialogFixedSize = { 820, 560 };
+QSize dialogFixedSize = { 1024, 560 };
 QString dialogTitle = QObject::tr("计划清单");
 
 QString dialog_selectFolderPart_labelText = QObject::tr("资源路径");

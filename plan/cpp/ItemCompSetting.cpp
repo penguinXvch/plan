@@ -19,6 +19,11 @@ ItemCompSetting::~ItemCompSetting() noexcept
 {
 }
 
+QPushButton* ItemCompSetting::getLoadBtnCtrlPointer() noexcept
+{
+    return __load_btnCtrl_;
+}
+
 void ItemCompSetting::__init() noexcept
 {
     __init_createCtrls();

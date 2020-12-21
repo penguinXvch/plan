@@ -1,6 +1,7 @@
 
 #include "../hpp/Dialog.hpp"
 #include "../hpp/Global.hpp"
+#include "../hpp/Item.hpp"
 #include <QIcon>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -14,6 +15,7 @@ Dialog::Dialog(QWidget *parent) noexcept
 {
     __initDialog();
     __initSelectFolderPart();
+    __initItemSetPart();
     __dialogLayout();
 }
 
@@ -108,7 +110,42 @@ void Dialog::__initSelectFolderPart_layoutCtrls() noexcept
     __selectFolderPart_horiLayout_->addLayout(__selectFolderPart_vertLayout_);
 }
 
+void Dialog::__initItemSetPart() noexcept
+{
+    __initItemSetPart_createCtrls();
+    __initItemSetPart_decorateCtrls();
+    __initItemSetPart_layoutCtrls();
+}
+
+void Dialog::__initItemSetPart_createCtrls() noexcept
+{
+    __ItemSetPart_horiLayout_ = new QHBoxLayout();
+}
+
+void Dialog::__initItemSetPart_decorateCtrls() noexcept
+{
+    for (int index = 0; index < 4; ++index)
+    {
+        QString title = "test " + QString::number(index);
+        itemCompSetting_titleTextSet.push_back(title);
+        __ItemSetPart_ItemSet_.push_back(new Item(index));
+    }
+}
+
+void Dialog::__initItemSetPart_layoutCtrls() noexcept
+{
+    for (int index = 0; index < __ItemSetPart_ItemSet_.count(); ++index)
+    {
+        __ItemSetPart_horiLayout_->addWidget(__ItemSetPart_ItemSet_[index]);
+    }
+}
+
 void Dialog::__dialogLayout() noexcept
 {
-    this->setLayout(__selectFolderPart_horiLayout_);
+    __dialog_vertLayout_ = new QVBoxLayout();
+
+    __dialog_vertLayout_->addLayout(__selectFolderPart_horiLayout_);
+    __dialog_vertLayout_->addLayout(__ItemSetPart_horiLayout_);
+
+    this->setLayout(__dialog_vertLayout_);
 }

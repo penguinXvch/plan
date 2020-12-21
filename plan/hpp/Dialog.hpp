@@ -9,6 +9,7 @@ class QLabel;
 class QTextEdit;
 class QVBoxLayout;
 class QPushButton;
+class Item;
 
 class Dialog : public QDialog
 {
@@ -39,6 +40,19 @@ private:
     void __initSelectFolderPart_decorateCtrls() noexcept;
     void __initSelectFolderPart_connectCtrlsEvents() noexcept;
     void __initSelectFolderPart_layoutCtrls() noexcept;
+
+private:
+    QHBoxLayout* __ItemSetPart_horiLayout_ = nullptr;
+    QVector<Item*> __ItemSetPart_ItemSet_;
+
+private:
+    void __initItemSetPart() noexcept;
+    void __initItemSetPart_createCtrls() noexcept;
+    void __initItemSetPart_decorateCtrls() noexcept;
+    void __initItemSetPart_layoutCtrls() noexcept;
+
+private:
+    QVBoxLayout* __dialog_vertLayout_ = nullptr;
 
 private:
     void __dialogLayout() noexcept;

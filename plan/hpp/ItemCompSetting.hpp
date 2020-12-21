@@ -18,6 +18,9 @@ public:
     explicit ItemCompSetting(int index, QWidget* parent = nullptr) noexcept;
     ~ItemCompSetting() noexcept;
 
+public:
+    QPushButton* getLoadBtnCtrlPointer() noexcept;
+
 private:
     QVBoxLayout* __vertLayout_ = nullptr;
     QHBoxLayout* __horiLayout_ = nullptr;

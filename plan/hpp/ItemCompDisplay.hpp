@@ -4,6 +4,7 @@
 
 #include <QWidget>
 
+class QHBoxLayout;
 class QListWidget;
 
 class ItemCompDisplay : public QWidget
@@ -14,8 +15,18 @@ public:
     explicit ItemCompDisplay(QWidget* parent = nullptr) noexcept;
     ~ItemCompDisplay() noexcept;
 
+public:
+    void clearListWidgetItem() noexcept;
+    void addListWidgetItem(const QString& text) noexcept;
+
 private:
+    QHBoxLayout* __horiLayout_ = nullptr;
     QListWidget* __list_ = nullptr;
+
+private:
+    void __init() noexcept;
+    void __init_createCtrls() noexcept;
+    void __init_layoutCtrls() noexcept;
 };
 
 #endif // ITEMCOMPDISPLAY_HPP

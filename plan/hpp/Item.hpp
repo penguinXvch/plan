@@ -24,6 +24,7 @@ private:
 private:
     void __init() noexcept;
     void __init_createCtrls() noexcept;
+    void __init_connectCtrlsEvents() noexcept;
     void __init_layoutCtrls() noexcept;
 
 private:
