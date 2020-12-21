@@ -9,7 +9,8 @@ QSize dialogFixedSize = { 820, 560 };
 QString dialogTitle = QObject::tr("计划清单");
 
 QString dialog_selectFolderPart_labelText = QObject::tr("资源路径");
-QString dialog_selectFolderPart_btnText = QObject::tr("选择");
+QString dialog_selectFolderPart_selectBtnText = QObject::tr("选择");
+QString dialog_selectFolderPart_loadBtnText = QObject::tr("加载");
 
 QString readLastSavedResourcePath() noexcept
 {

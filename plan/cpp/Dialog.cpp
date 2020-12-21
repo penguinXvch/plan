@@ -5,6 +5,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QTextEdit>
+#include <QVBoxLayout>
 #include <QPushButton>
 #include <QFileDialog>
 
@@ -63,19 +64,22 @@ void Dialog::__initSelectFolderPart_createCtrls() noexcept
     __selectFolderPart_horiLayout_ = new QHBoxLayout();
     __selectFolderPart_labelCtrl_ = new QLabel();
     __selectFolderPart_showPathCtrl_ = new QTextEdit();
-    __selectFolderPart_btnCtrl_ = new QPushButton();
+    __selectFolderPart_vertLayout_ = new QVBoxLayout();
+    __selectFolderPart_selectBtnCtrl_ = new QPushButton();
+    __selectFolderPart_loadBtnCtrl_ = new QPushButton();
 }
 
 void Dialog::__initSelectFolderPart_decorateCtrls() noexcept
 {
     __selectFolderPart_labelCtrl_->setText(dialog_selectFolderPart_labelText);
     __selectFolderPart_showPathCtrl_->setText(readLastSavedResourcePath());
-    __selectFolderPart_btnCtrl_->setText(dialog_selectFolderPart_btnText);
+    __selectFolderPart_selectBtnCtrl_->setText(dialog_selectFolderPart_selectBtnText);
+    __selectFolderPart_loadBtnCtrl_->setText(dialog_selectFolderPart_loadBtnText);
 }
 
 void Dialog::__initSelectFolderPart_connectCtrlsEvents() noexcept
 {
-    connect(__selectFolderPart_btnCtrl_, &QPushButton::clicked, [this]()
+    connect(__selectFolderPart_selectBtnCtrl_, &QPushButton::clicked, [this]()
     {
         QFileDialog::Options options =
                 QFileDialog::ShowDirsOnly           |
@@ -97,7 +101,11 @@ void Dialog::__initSelectFolderPart_layoutCtrls() noexcept
 {
     __selectFolderPart_horiLayout_->addWidget(__selectFolderPart_labelCtrl_);
     __selectFolderPart_horiLayout_->addWidget(__selectFolderPart_showPathCtrl_);
-    __selectFolderPart_horiLayout_->addWidget(__selectFolderPart_btnCtrl_);
+
+    __selectFolderPart_vertLayout_->addWidget(__selectFolderPart_selectBtnCtrl_);
+    __selectFolderPart_vertLayout_->addWidget(__selectFolderPart_loadBtnCtrl_);
+
+    __selectFolderPart_horiLayout_->addLayout(__selectFolderPart_vertLayout_);
 }
 
 void Dialog::__dialogLayout() noexcept

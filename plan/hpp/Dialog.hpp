@@ -7,6 +7,7 @@
 class QHBoxLayout;
 class QLabel;
 class QTextEdit;
+class QVBoxLayout;
 class QPushButton;
 
 class Dialog : public QDialog
@@ -28,7 +29,9 @@ private:
     QHBoxLayout* __selectFolderPart_horiLayout_ = nullptr;
     QLabel* __selectFolderPart_labelCtrl_ = nullptr;
     QTextEdit* __selectFolderPart_showPathCtrl_ = nullptr;
-    QPushButton* __selectFolderPart_btnCtrl_ = nullptr;
+    QVBoxLayout* __selectFolderPart_vertLayout_ = nullptr;
+    QPushButton* __selectFolderPart_selectBtnCtrl_ = nullptr;
+    QPushButton* __selectFolderPart_loadBtnCtrl_ = nullptr;
 
 private:
     void __initSelectFolderPart() noexcept;
