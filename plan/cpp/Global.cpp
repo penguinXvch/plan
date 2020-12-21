@@ -12,6 +12,15 @@ QString dialog_selectFolderPart_labelText = QObject::tr("资源路径");
 QString dialog_selectFolderPart_selectBtnText = QObject::tr("选择");
 QString dialog_selectFolderPart_loadBtnText = QObject::tr("加载");
 
+// [begin] ItemCompSetting
+
+int itemCompSetting_defaultNumber = 3;
+QString itemCompSetting_curNumberText = QObject::tr("当前数量");
+QString itemCompSetting_loadBtnText = QObject::tr("加载");
+QVector<QString> itemCompSetting_titleTextSet;
+
+// [end] ItemCompSetting
+
 QString readLastSavedResourcePath() noexcept
 {
     QString path;
