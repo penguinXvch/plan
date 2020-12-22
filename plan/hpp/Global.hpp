@@ -7,23 +7,29 @@
 class QSize;
 class QString;
 
-extern QSize dialogFixedSize;
-extern QString dialogTitle;
+//-------------------------------------------------------------
+// Dialog
 
-extern QString dialog_selectFolderPart_labelText;
-extern QString dialog_selectFolderPart_selectBtnText;
-extern QString dialog_selectFolderPart_loadBtnText;
+extern QSize dialog_fixedSize;
+extern QString dialog_title;
 
-// [begin] ItemCompSetting
+//-------------------------------------------------------------
+// SelectFolder
+
+extern QString selectFolder_labelText;
+extern QString selectFolder_selectBtnText;
+extern QString selectFolder_loadBtnText;
+extern QString selectFolder_getExistingDir_titleText;
+
+QString readLastSavedResourcePath() noexcept;
+void writeSelectedResourcePath(const QString& path) noexcept;
+
+//-------------------------------------------------------------
+// ItemCompSetting
 
 extern int itemCompSetting_defaultNumber;
 extern QString itemCompSetting_curNumberText;
 extern QString itemCompSetting_loadBtnText;
 extern QVector<QString> itemCompSetting_titleTextSet;
-
-// [end] ItemCompSetting
-
-QString readLastSavedResourcePath() noexcept;
-void writeSelectedResourcePath(const QString& path) noexcept;
 
 #endif // GLOBAL_HPP

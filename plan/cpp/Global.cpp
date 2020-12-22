@@ -5,21 +5,19 @@
 #include <QFile>
 #include <QDir>
 
-QSize dialogFixedSize = { 1024, 560 };
-QString dialogTitle = QObject::tr("计划清单");
+//-------------------------------------------------------------
+// Dialog
 
-QString dialog_selectFolderPart_labelText = QObject::tr("资源路径");
-QString dialog_selectFolderPart_selectBtnText = QObject::tr("选择");
-QString dialog_selectFolderPart_loadBtnText = QObject::tr("加载");
+QSize dialog_fixedSize = { 1024, 560 };
+QString dialog_title = QObject::tr("计划清单");
 
-// [begin] ItemCompSetting
+//-------------------------------------------------------------
+// SelectFolder
 
-int itemCompSetting_defaultNumber = 3;
-QString itemCompSetting_curNumberText = QObject::tr("当前数量");
-QString itemCompSetting_loadBtnText = QObject::tr("加载");
-QVector<QString> itemCompSetting_titleTextSet;
-
-// [end] ItemCompSetting
+QString selectFolder_labelText = QObject::tr("资源路径");
+QString selectFolder_selectBtnText = QObject::tr("选择");
+QString selectFolder_loadBtnText = QObject::tr("加载");
+QString selectFolder_getExistingDir_titleText = QObject::tr("选择目录");
 
 QString readLastSavedResourcePath() noexcept
 {
@@ -67,3 +65,11 @@ void writeSelectedResourcePath(const QString& path) noexcept
         file.close();
     }
 }
+
+//-------------------------------------------------------------
+// ItemCompSetting
+
+int itemCompSetting_defaultNumber = 1;
+QString itemCompSetting_curNumberText = QObject::tr("当前数量");
+QString itemCompSetting_loadBtnText = QObject::tr("加载");
+QVector<QString> itemCompSetting_titleTextSet;

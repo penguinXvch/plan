@@ -5,10 +5,8 @@
 #include <QDialog>
 
 class QHBoxLayout;
-class QLabel;
-class QTextEdit;
 class QVBoxLayout;
-class QPushButton;
+class SelectFolder;
 class Item;
 
 class Dialog : public QDialog
@@ -28,22 +26,16 @@ private:
 
 private:
     QHBoxLayout* __selectFolderPart_horiLayout_ = nullptr;
-    QLabel* __selectFolderPart_labelCtrl_ = nullptr;
-    QTextEdit* __selectFolderPart_showPathCtrl_ = nullptr;
-    QVBoxLayout* __selectFolderPart_vertLayout_ = nullptr;
-    QPushButton* __selectFolderPart_selectBtnCtrl_ = nullptr;
-    QPushButton* __selectFolderPart_loadBtnCtrl_ = nullptr;
+    SelectFolder* __selectFolderPart_selectFolder_ = nullptr;
 
 private:
     void __initSelectFolderPart() noexcept;
     void __initSelectFolderPart_createCtrls() noexcept;
-    void __initSelectFolderPart_decorateCtrls() noexcept;
-    void __initSelectFolderPart_connectCtrlsEvents() noexcept;
     void __initSelectFolderPart_layoutCtrls() noexcept;
 
 private:
-    QHBoxLayout* __ItemSetPart_horiLayout_ = nullptr;
-    QVector<Item*> __ItemSetPart_ItemSet_;
+    QHBoxLayout* __itemSetPart_horiLayout_ = nullptr;
+    QVector<Item*> __itemSetPart_itemSet_;
 
 private:
     void __initItemSetPart() noexcept;

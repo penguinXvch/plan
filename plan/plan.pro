@@ -12,6 +12,7 @@ SOURCES +=          \
     cpp/Item.cpp \
     cpp/ItemCompDisplay.cpp \
     cpp/ItemCompSetting.cpp \
+    cpp/SelectFolder.cpp \
     main.cpp        \
     cpp/Global.cpp  \
     cpp/Dialog.cpp
@@ -21,7 +22,8 @@ HEADERS +=              \
     hpp/Dialog.hpp \
     hpp/Item.hpp \
     hpp/ItemCompDisplay.hpp \
-    hpp/ItemCompSetting.hpp
+    hpp/ItemCompSetting.hpp \
+    hpp/SelectFolder.hpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
