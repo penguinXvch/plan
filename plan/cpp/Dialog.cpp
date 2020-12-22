@@ -6,13 +6,14 @@
 #include <QIcon>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QPushButton>
 
 Dialog::Dialog(QWidget *parent) noexcept
     : QDialog(parent)
 {
     __initDialog();
     __initSelectFolderPart();
-    __initItemSetPart();
+    __initItemSetPart(true);
     __dialogLayout();
 }
 
@@ -53,6 +54,7 @@ void Dialog::__initDialog_hideHelpBtn() noexcept
 void Dialog::__initSelectFolderPart() noexcept
 {
     __initSelectFolderPart_createCtrls();
+    __initSelectFolderPart_connectCtrlsEvents();
     __initSelectFolderPart_layoutCtrls();
 }
 
@@ -62,16 +64,32 @@ void Dialog::__initSelectFolderPart_createCtrls() noexcept
     __selectFolderPart_selectFolder_ = new SelectFolder();
 }
 
+void Dialog::__initSelectFolderPart_connectCtrlsEvents() noexcept
+{
+    connect(__selectFolderPart_selectFolder_->getLoadBtnCtrlPointer(),
+            &QPushButton::clicked,
+            [this]()
+    {
+        __initItemSetPart();
+    });
+}
+
 void Dialog::__initSelectFolderPart_layoutCtrls() noexcept
 {
     __selectFolderPart_horiLayout_->addWidget(__selectFolderPart_selectFolder_);
 }
 
-void Dialog::__initItemSetPart() noexcept
+void Dialog::__initItemSetPart(const bool& initDialog) noexcept
 {
-    __initItemSetPart_createCtrls();
-    __initItemSetPart_decorateCtrls();
-    __initItemSetPart_layoutCtrls();
+    if (initDialog)
+    {
+        __initItemSetPart_createCtrls();
+    }
+    else
+    {
+        __initItemSetPart_decorateCtrls();
+        __initItemSetPart_layoutCtrls();
+    }
 }
 
 void Dialog::__initItemSetPart_createCtrls() noexcept
@@ -81,9 +99,25 @@ void Dialog::__initItemSetPart_createCtrls() noexcept
 
 void Dialog::__initItemSetPart_decorateCtrls() noexcept
 {
-    for (int index = 0; index < 4; ++index)
     {
-        QString title = "test " + QString::number(index);
+        QList<Item*> allItems = findChildren<Item*>();
+
+        foreach (Item* item, allItems)
+        {
+            item->setParent(nullptr);
+            delete item;
+        }
+
+        itemCompSetting_titleTextSet.resize(0);
+        __itemSetPart_itemSet_.resize(0);
+    }
+
+    QString path = __selectFolderPart_selectFolder_->getCurPath();
+    QVector<QString> list = getAllChildDirNames(path);
+
+    for (int index = 0; index < list.count(); ++index)
+    {
+        QString title = list[index];
         itemCompSetting_titleTextSet.push_back(title);
         __itemSetPart_itemSet_.push_back(new Item(index));
     }

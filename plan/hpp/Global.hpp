@@ -13,6 +13,8 @@ class QString;
 extern QSize dialog_fixedSize;
 extern QString dialog_title;
 
+QVector<QString> getAllChildDirNames(const QString& path) noexcept;
+
 //-------------------------------------------------------------
 // SelectFolder
 

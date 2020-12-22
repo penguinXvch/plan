@@ -18,6 +18,10 @@ public:
     explicit SelectFolder(QWidget* parent = nullptr) noexcept;
     ~SelectFolder() noexcept;
 
+public:
+    QPushButton* getLoadBtnCtrlPointer() noexcept;
+    QString getCurPath() noexcept;
+
 private:
     QHBoxLayout* __horiLayout_ = nullptr;
     QLabel* __labelCtrl_ = nullptr;

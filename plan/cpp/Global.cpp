@@ -11,6 +11,39 @@
 QSize dialog_fixedSize = { 1024, 560 };
 QString dialog_title = QObject::tr("计划清单");
 
+QVector<QString> getAllChildDirNames(const QString& path) noexcept
+{
+    QVector<QString> childDirNames;
+
+    if (path.isEmpty())
+    {
+        return childDirNames;
+    }
+
+    QDir dir(path);
+
+    if (dir.exists())
+    {
+        dir.setFilter(QDir::AllDirs);
+        QFileInfoList list = dir.entryInfoList();
+
+        foreach (QFileInfo fileInfo, list)
+        {
+            if (fileInfo.isDir())
+            {
+                QString name = fileInfo.fileName();
+
+                if (name != "." && name != "..")
+                {
+                    childDirNames.push_back(name);
+                }
+            }
+        }
+    }
+
+    return childDirNames;
+}
+
 //-------------------------------------------------------------
 // SelectFolder
 

@@ -31,6 +31,7 @@ private:
 private:
     void __initSelectFolderPart() noexcept;
     void __initSelectFolderPart_createCtrls() noexcept;
+    void __initSelectFolderPart_connectCtrlsEvents() noexcept;
     void __initSelectFolderPart_layoutCtrls() noexcept;
 
 private:
@@ -38,7 +39,7 @@ private:
     QVector<Item*> __itemSetPart_itemSet_;
 
 private:
-    void __initItemSetPart() noexcept;
+    void __initItemSetPart(const bool& initDialog = false) noexcept;
     void __initItemSetPart_createCtrls() noexcept;
     void __initItemSetPart_decorateCtrls() noexcept;
     void __initItemSetPart_layoutCtrls() noexcept;
