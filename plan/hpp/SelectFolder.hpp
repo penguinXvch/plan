@@ -32,6 +32,9 @@ private:
     void __init_decorateCtrls() noexcept;
     void __init_connectCtrlsEvents() noexcept;
     void __init_layoutCtrls() noexcept;
+
+private:
+    QString __curPath_;
 };
 
 #endif // SELECTFOLDER_HPP

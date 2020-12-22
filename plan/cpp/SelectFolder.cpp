@@ -39,6 +39,7 @@ void SelectFolder::__init_createCtrls() noexcept
 void SelectFolder::__init_decorateCtrls() noexcept
 {
     __labelCtrl_->setText(selectFolder_labelText);
+    __showPathCtrl_->setReadOnly(true);
     __showPathCtrl_->setText(readLastSavedResourcePath());
     __selectBtnCtrl_->setText(selectFolder_selectBtnText);
     __loadBtnCtrl_->setText(selectFolder_loadBtnText);
@@ -61,8 +62,13 @@ void SelectFolder::__init_connectCtrlsEvents() noexcept
         if (!path.isEmpty())
         {
             __showPathCtrl_->setText(path);
-            writeSelectedResourcePath(path);
+            __curPath_ = path;
         }
+    });
+
+    connect(__loadBtnCtrl_, &QPushButton::clicked, [this]()
+    {
+        writeSelectedResourcePath(__curPath_);
     });
 }
 
