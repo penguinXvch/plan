@@ -20,6 +20,7 @@ public:
 
 public:
     QPushButton* getLoadBtnCtrlPointer() noexcept;
+    int getLineEditCtrlDisplayNumber() noexcept;
 
 private:
     QVBoxLayout* __vertLayout_ = nullptr;

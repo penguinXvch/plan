@@ -4,6 +4,8 @@
 #include <QString>
 #include <QFile>
 #include <QDir>
+#include <QHash>
+#include <QDateTime>
 
 //-------------------------------------------------------------
 // Dialog
@@ -11,16 +13,16 @@
 QSize dialog_fixedSize = { 1024, 560 };
 QString dialog_title = QObject::tr("计划清单");
 
-QVector<QString> getAllChildDirNames(const QString& path) noexcept
+QVector<QString> getAllChildDirNames() noexcept
 {
     QVector<QString> childDirNames;
 
-    if (path.isEmpty())
+    if (selectFolder_curPath.isEmpty())
     {
         return childDirNames;
     }
 
-    QDir dir(path);
+    QDir dir(selectFolder_curPath);
 
     if (dir.exists())
     {
@@ -44,8 +46,85 @@ QVector<QString> getAllChildDirNames(const QString& path) noexcept
     return childDirNames;
 }
 
+QVector<QString> getAllChildFileNames(const QString& path) noexcept
+{
+    QVector<QString> childFileNames;
+
+    if (path.isEmpty())
+    {
+        return childFileNames;
+    }
+
+    QDir dir(path);
+
+    if (dir.exists())
+    {
+        dir.setFilter(QDir::Files);
+        QFileInfoList list = dir.entryInfoList();
+
+        foreach (QFileInfo fileInfo, list)
+        {
+            if (fileInfo.isFile())
+            {
+                QString name = fileInfo.fileName();
+                childFileNames.push_back(name);
+            }
+        }
+    }
+
+    return childFileNames;
+}
+
+QVector<QString> selectFilesAlgorithm(const QVector<QString>& files,
+                                      const int& number) noexcept
+{
+    QVector<QString> selectFiles;
+
+    if (files.count() == 0 || number == 0)
+    {
+        return selectFiles;
+    }
+
+    QVector<uint> hashValueSet;
+    hashValueSet.resize(number);
+
+    for (int i = 0; i < hashValueSet.count(); ++i)
+    {
+        if (i == 0)
+        {
+            QString dateTime = QDateTime::currentDateTime().toString("yyyy.MM.dd MMMM dddd");
+            hashValueSet[i] = qHash(dateTime);
+        }
+        else
+        {
+            hashValueSet[i] = qHash(~(hashValueSet[i - 1]) | (hashValueSet[i - 1] >> 1));
+        }
+    }
+
+    QHash<uint, void*> sameIndex;
+
+    for (int i = 0; i < hashValueSet.count(); ++i)
+    {
+        hashValueSet[i] = hashValueSet[i] % files.count();
+
+        if (sameIndex.find(hashValueSet[i]) == sameIndex.end())
+        {
+            sameIndex.insert(hashValueSet[i], nullptr);
+        }
+    }
+
+    for (auto constIter = sameIndex.constBegin(); constIter != sameIndex.constEnd(); ++constIter)
+    {
+        selectFiles.push_back(files[constIter.key()]);
+    }
+
+    return selectFiles;
+}
+
 //-------------------------------------------------------------
 // SelectFolder
+
+QString selectFolder_curPath;
 
 QString selectFolder_labelText = QObject::tr("资源路径");
 QString selectFolder_selectBtnText = QObject::tr("选择");
@@ -66,13 +145,15 @@ QString readLastSavedResourcePath() noexcept
     {
         QByteArray byteArray = file.readLine();
 
-        if (!byteArray.isNull())
+        if (!byteArray.isEmpty())
         {
             path = byteArray;
         }
 
         file.close();
     }
+
+    selectFolder_curPath = path;
 
     return path;
 }

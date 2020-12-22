@@ -1,5 +1,6 @@
 
 #include "../hpp/Item.hpp"
+#include "../hpp/Global.hpp"
 #include "../hpp/ItemCompSetting.hpp"
 #include "../hpp/ItemCompDisplay.hpp"
 #include <QVBoxLayout>
@@ -35,7 +36,16 @@ void Item::__init_connectCtrlsEvents() noexcept
     connect(__itemCompSetting_->getLoadBtnCtrlPointer(), &QPushButton::clicked, [this]()
     {
         __itemCompDisplay_->clearListWidgetItem();
-        __itemCompDisplay_->addListWidgetItem("test");
+
+        QString path = selectFolder_curPath + "/" + itemCompSetting_titleTextSet[__index_];
+        QVector<QString> files = getAllChildFileNames(path);
+        QVector<QString> selectFiles =
+            selectFilesAlgorithm(files, __itemCompSetting_->getLineEditCtrlDisplayNumber());
+
+        foreach (QString text, selectFiles)
+        {
+            __itemCompDisplay_->addListWidgetItem(text);
+        }
     });
 }
 

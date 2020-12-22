@@ -24,6 +24,11 @@ QPushButton* ItemCompSetting::getLoadBtnCtrlPointer() noexcept
     return __load_btnCtrl_;
 }
 
+int ItemCompSetting::getLineEditCtrlDisplayNumber() noexcept
+{
+    return __curNumber_lineEditCtrl_->text().toInt();
+}
+
 void ItemCompSetting::__init() noexcept
 {
     __init_createCtrls();

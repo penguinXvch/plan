@@ -112,8 +112,7 @@ void Dialog::__initItemSetPart_decorateCtrls() noexcept
         __itemSetPart_itemSet_.resize(0);
     }
 
-    QString path = __selectFolderPart_selectFolder_->getCurPath();
-    QVector<QString> list = getAllChildDirNames(path);
+    QVector<QString> list = getAllChildDirNames();
 
     for (int index = 0; index < list.count(); ++index)
     {

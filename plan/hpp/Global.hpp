@@ -13,10 +13,16 @@ class QString;
 extern QSize dialog_fixedSize;
 extern QString dialog_title;
 
-QVector<QString> getAllChildDirNames(const QString& path) noexcept;
+QVector<QString> getAllChildDirNames() noexcept;
+QVector<QString> getAllChildFileNames(const QString& path) noexcept;
+
+QVector<QString> selectFilesAlgorithm(const QVector<QString>& files,
+                                      const int& number) noexcept;
 
 //-------------------------------------------------------------
 // SelectFolder
+
+extern QString selectFolder_curPath;
 
 extern QString selectFolder_labelText;
 extern QString selectFolder_selectBtnText;

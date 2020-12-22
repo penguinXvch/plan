@@ -23,11 +23,6 @@ QPushButton* SelectFolder::getLoadBtnCtrlPointer() noexcept
     return __loadBtnCtrl_;
 }
 
-QString SelectFolder::getCurPath() noexcept
-{
-    return __curPath_;
-}
-
 void SelectFolder::__init() noexcept
 {
     __init_createCtrls();
@@ -72,15 +67,15 @@ void SelectFolder::__init_connectCtrlsEvents() noexcept
         if (!path.isEmpty())
         {
             __showPathCtrl_->setText(path);
-            __curPath_ = path;
+            selectFolder_curPath = path;
         }
     });
 
-    connect(__loadBtnCtrl_, &QPushButton::clicked, [this]()
+    connect(__loadBtnCtrl_, &QPushButton::clicked, []()
     {
-        if (!__curPath_.isEmpty())
+        if (!selectFolder_curPath.isEmpty())
         {
-            writeSelectedResourcePath(__curPath_);
+            writeSelectedResourcePath(selectFolder_curPath);
         }
     });
 }
