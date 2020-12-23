@@ -10,8 +10,9 @@ class QString;
 //-------------------------------------------------------------
 // Dialog
 
-extern QSize dialog_fixedSize;
+extern QSize dialog_initFixedSize;
 extern int dialog_unitItemWidth;
+extern int dialog_nonInitFixedHeight;
 extern QString dialog_title;
 
 QVector<QString> getAllChildDirNames() noexcept;

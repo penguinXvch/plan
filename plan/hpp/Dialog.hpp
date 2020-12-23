@@ -31,6 +31,7 @@ private:
 private:
     void __initSelectFolderPart() noexcept;
     void __initSelectFolderPart_createCtrls() noexcept;
+    void __initSelectFolderPart_decorateCtrls() noexcept;
     void __initSelectFolderPart_connectCtrlsEvents() noexcept;
     void __initSelectFolderPart_layoutCtrls() noexcept;
 

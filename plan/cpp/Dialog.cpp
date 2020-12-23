@@ -38,21 +38,32 @@ void Dialog::__initDialog_setFixedSize(const bool& initDialog) noexcept
 
     if (initDialog)
     {
-        setMinimumSize(dialog_fixedSize.width(), dialog_fixedSize.height());
-        setMaximumSize(dialog_fixedSize.width(), dialog_fixedSize.height());
+        setMinimumSize(dialog_initFixedSize.width(), dialog_initFixedSize.height());
+        setMaximumSize(dialog_initFixedSize.width(), dialog_initFixedSize.height());
 
-        x = (desktop->width() - dialog_fixedSize.width()) / 2;
-        y = (desktop->height() - dialog_fixedSize.height()) / 2;
+        x = (desktop->width() - dialog_initFixedSize.width()) / 2;
+        y = (desktop->height() - dialog_initFixedSize.height()) / 2;
     }
     else
     {
         int width = itemCompSetting_titleTextSet.count() * dialog_unitItemWidth;
 
-        setMinimumSize(width, dialog_fixedSize.height());
-        setMaximumSize(width, dialog_fixedSize.height());
+        if (width == 0)
+        {
+            setMinimumSize(dialog_initFixedSize.width(), dialog_initFixedSize.height());
+            setMaximumSize(dialog_initFixedSize.width(), dialog_initFixedSize.height());
 
-        x = (desktop->width() - width) / 2;
-        y = (desktop->height() - dialog_fixedSize.height()) / 2;
+            x = (desktop->width() - dialog_initFixedSize.width()) / 2;
+            y = (desktop->height() - dialog_initFixedSize.height()) / 2;
+        }
+        else
+        {
+            setMinimumSize(width, dialog_nonInitFixedHeight);
+            setMaximumSize(width, dialog_nonInitFixedHeight);
+
+            x = (desktop->width() - width) / 2;
+            y = (desktop->height() - dialog_nonInitFixedHeight) / 2;
+        }
     }
 
     move(x, y);
@@ -77,6 +88,7 @@ void Dialog::__initDialog_hideHelpBtn() noexcept
 void Dialog::__initSelectFolderPart() noexcept
 {
     __initSelectFolderPart_createCtrls();
+    __initSelectFolderPart_decorateCtrls();
     __initSelectFolderPart_connectCtrlsEvents();
     __initSelectFolderPart_layoutCtrls();
 }
@@ -85,6 +97,12 @@ void Dialog::__initSelectFolderPart_createCtrls() noexcept
 {
     __selectFolderPart_horiLayout_ = new QHBoxLayout();
     __selectFolderPart_selectFolder_ = new SelectFolder();
+}
+
+void Dialog::__initSelectFolderPart_decorateCtrls() noexcept
+{
+    __selectFolderPart_selectFolder_->setMinimumHeight(100);
+    __selectFolderPart_selectFolder_->setMaximumHeight(100);
 }
 
 void Dialog::__initSelectFolderPart_connectCtrlsEvents() noexcept
