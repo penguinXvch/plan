@@ -19,7 +19,7 @@ public:
 
 private:
     void __initDialog() noexcept;
-    void __initDialog_setFixedSize() noexcept;
+    void __initDialog_setFixedSize(const bool& initDialog = false) noexcept;
     void __initDialog_setTitle() noexcept;
     void __initDialog_setIcon() noexcept;
     void __initDialog_hideHelpBtn() noexcept;

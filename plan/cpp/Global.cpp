@@ -11,6 +11,7 @@
 // Dialog
 
 QSize dialog_fixedSize = { 1024, 560 };
+int dialog_unitItemWidth = 256;
 QString dialog_title = QObject::tr("计划清单");
 
 QVector<QString> getAllChildDirNames() noexcept
@@ -120,6 +121,11 @@ QVector<QString> selectFilesAlgorithm(const QVector<QString>& files,
 
     return selectFiles;
 }
+
+//-------------------------------------------------------------
+// Item
+
+int item_itemsNumberLimit = 9;
 
 //-------------------------------------------------------------
 // SelectFolder

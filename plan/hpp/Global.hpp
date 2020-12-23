@@ -11,6 +11,7 @@ class QString;
 // Dialog
 
 extern QSize dialog_fixedSize;
+extern int dialog_unitItemWidth;
 extern QString dialog_title;
 
 QVector<QString> getAllChildDirNames() noexcept;
@@ -18,6 +19,11 @@ QVector<QString> getAllChildFileNames(const QString& path) noexcept;
 
 QVector<QString> selectFilesAlgorithm(const QVector<QString>& files,
                                       const int& number) noexcept;
+
+//-------------------------------------------------------------
+// Item
+
+extern int item_itemsNumberLimit;
 
 //-------------------------------------------------------------
 // SelectFolder

@@ -7,6 +7,8 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QDesktopWidget>
+#include <QApplication>
 
 Dialog::Dialog(QWidget *parent) noexcept
     : QDialog(parent)
@@ -23,16 +25,37 @@ Dialog::~Dialog() noexcept
 
 void Dialog::__initDialog() noexcept
 {
-    __initDialog_setFixedSize();
+    __initDialog_setFixedSize(true);
     __initDialog_setTitle();
     __initDialog_setIcon();
     __initDialog_hideHelpBtn();
 }
 
-void Dialog::__initDialog_setFixedSize() noexcept
+void Dialog::__initDialog_setFixedSize(const bool& initDialog) noexcept
 {
-    setMinimumSize(dialog_fixedSize.width(), dialog_fixedSize.height());
-    setMaximumSize(dialog_fixedSize.width(), dialog_fixedSize.height());
+    QDesktopWidget* desktop = QApplication::desktop();
+    int x = 0, y = 0;
+
+    if (initDialog)
+    {
+        setMinimumSize(dialog_fixedSize.width(), dialog_fixedSize.height());
+        setMaximumSize(dialog_fixedSize.width(), dialog_fixedSize.height());
+
+        x = (desktop->width() - dialog_fixedSize.width()) / 2;
+        y = (desktop->height() - dialog_fixedSize.height()) / 2;
+    }
+    else
+    {
+        int width = itemCompSetting_titleTextSet.count() * dialog_unitItemWidth;
+
+        setMinimumSize(width, dialog_fixedSize.height());
+        setMaximumSize(width, dialog_fixedSize.height());
+
+        x = (desktop->width() - width) / 2;
+        y = (desktop->height() - dialog_fixedSize.height()) / 2;
+    }
+
+    move(x, y);
 }
 
 void Dialog::__initDialog_setTitle() noexcept
@@ -89,6 +112,7 @@ void Dialog::__initItemSetPart(const bool& initDialog) noexcept
     {
         __initItemSetPart_decorateCtrls();
         __initItemSetPart_layoutCtrls();
+        __initDialog_setFixedSize();
     }
 }
 
@@ -116,6 +140,8 @@ void Dialog::__initItemSetPart_decorateCtrls() noexcept
 
     for (int index = 0; index < list.count(); ++index)
     {
+        if (index >= item_itemsNumberLimit) break;
+
         QString title = list[index];
         itemCompSetting_titleTextSet.push_back(title);
         __itemSetPart_itemSet_.push_back(new Item(index));
