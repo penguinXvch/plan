@@ -24,7 +24,8 @@ public:
 
 private:
     QVBoxLayout* __vertLayout_ = nullptr;
-    QHBoxLayout* __horiLayout_ = nullptr;
+    QHBoxLayout* __labelEdit_horiLayout_ = nullptr;
+    QHBoxLayout* __btn_horiLayout_ = nullptr;
     QLabel* __title_labelCtrl_ = nullptr;
     QLabel* __curNumber_labelCtrl_ = nullptr;
     QLineEdit* __curNumber_lineEditCtrl_ = nullptr;

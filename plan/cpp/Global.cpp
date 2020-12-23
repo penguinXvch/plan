@@ -185,5 +185,5 @@ void writeSelectedResourcePath(const QString& path) noexcept
 
 int itemCompSetting_defaultNumber = 1;
 QString itemCompSetting_curNumberText = QObject::tr("当前数量");
-QString itemCompSetting_loadBtnText = QObject::tr("加载");
+QString itemCompSetting_loadBtnText = QObject::tr("筛选");
 QVector<QString> itemCompSetting_titleTextSet;

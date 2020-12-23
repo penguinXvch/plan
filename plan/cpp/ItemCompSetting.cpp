@@ -40,7 +40,8 @@ void ItemCompSetting::__init() noexcept
 void ItemCompSetting::__init_createCtrls() noexcept
 {
     __vertLayout_ = new QVBoxLayout();
-    __horiLayout_ = new QHBoxLayout();
+    __labelEdit_horiLayout_ = new QHBoxLayout();
+    __btn_horiLayout_ = new QHBoxLayout();
     __title_labelCtrl_ = new QLabel();
     __curNumber_labelCtrl_ = new QLabel();
     __curNumber_lineEditCtrl_ = new QLineEdit();
@@ -54,6 +55,7 @@ void ItemCompSetting::__init_decorateCtrls() noexcept
     __title_labelCtrl_->setAlignment(Qt::AlignCenter);
     __title_labelCtrl_->setText(itemCompSetting_titleTextSet[__index_]);
     __curNumber_labelCtrl_->setText(itemCompSetting_curNumberText);
+    __curNumber_lineEditCtrl_->setAlignment(Qt::AlignCenter);
     __curNumber_lineEditCtrl_->setValidator(new QRegExpValidator(QRegExp("^([0-9]|10)$"), this));
     __curNumber_lineEditCtrl_->setText(QString::number(itemCompSetting_defaultNumber));
     __addOne_btnCtrl_->setText("+");
@@ -80,13 +82,14 @@ void ItemCompSetting::__init_connectCtrlsEvents() noexcept
 
 void ItemCompSetting::__init_layoutCtrls() noexcept
 {
-    __horiLayout_->addWidget(__curNumber_labelCtrl_);
-    __horiLayout_->addWidget(__curNumber_lineEditCtrl_);
-    __horiLayout_->addWidget(__addOne_btnCtrl_);
-    __horiLayout_->addWidget(__minusOne_btnCtrl_);
+    __labelEdit_horiLayout_->addWidget(__curNumber_labelCtrl_);
+    __labelEdit_horiLayout_->addWidget(__curNumber_lineEditCtrl_);
+    __btn_horiLayout_->addWidget(__addOne_btnCtrl_);
+    __btn_horiLayout_->addWidget(__minusOne_btnCtrl_);
 
     __vertLayout_->addWidget(__title_labelCtrl_);
-    __vertLayout_->addLayout(__horiLayout_);
+    __vertLayout_->addLayout(__labelEdit_horiLayout_);
+    __vertLayout_->addLayout(__btn_horiLayout_);
     __vertLayout_->addWidget(__load_btnCtrl_);
 
     this->setLayout(__vertLayout_);
