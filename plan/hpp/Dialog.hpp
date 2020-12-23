@@ -14,7 +14,7 @@ class Dialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit Dialog(QWidget *parent = nullptr) noexcept;
+    explicit Dialog(QWidget* parent = nullptr) noexcept;
     ~Dialog() noexcept;
 
 private:

@@ -10,7 +10,7 @@
 #include <QDesktopWidget>
 #include <QApplication>
 
-Dialog::Dialog(QWidget *parent) noexcept
+Dialog::Dialog(QWidget* parent) noexcept
     : QDialog(parent)
 {
     __initDialog();
