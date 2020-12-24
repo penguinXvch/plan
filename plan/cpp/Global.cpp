@@ -4,8 +4,9 @@
 #include <QString>
 #include <QFile>
 #include <QDir>
-#include <QHash>
-#include <QDateTime>
+#include <thread>
+#include <QtGlobal>
+#include <QTime>
 
 //-------------------------------------------------------------
 // Dialog
@@ -82,42 +83,36 @@ QVector<QString> selectFilesAlgorithm(const QVector<QString>& files,
 {
     QVector<QString> selectFiles;
 
-    if (files.count() == 0 || number == 0)
+    if (files.count() == 0 || files.count() <= number)
+    {
+        return files;
+    }
+
+    if (number == 0)
     {
         return selectFiles;
     }
 
-    QVector<uint> hashValueSet;
-    hashValueSet.resize(number);
+    QHash<int, void*> uniqueValue;
 
-    for (int i = 0; i < hashValueSet.count(); ++i)
+    for (int i = 0; i < number; ++i)
     {
-        if (i == 0)
+        qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
+
+        int value = qAbs((qrand() & ~qrand()) ^ (qrand() << 2));
+
+        while (uniqueValue.find(value) != uniqueValue.end())
         {
-            QString dateTime = QDateTime::currentDateTime().toString("yyyy.MM.dd MMMM dddd");
-            hashValueSet[i] = qHash(dateTime);
+            ++value;
         }
-        else
-        {
-            hashValueSet[i] = qHash(~(hashValueSet[i - 1]) | (hashValueSet[i - 1] >> 1));
-        }
+
+        uniqueValue.insert(value, nullptr);
     }
 
-    QHash<uint, void*> sameIndex;
-
-    for (int i = 0; i < hashValueSet.count(); ++i)
+    for (auto constIter = uniqueValue.constBegin(); constIter != uniqueValue.constEnd(); ++constIter)
     {
-        hashValueSet[i] = hashValueSet[i] % files.count();
-
-        if (sameIndex.find(hashValueSet[i]) == sameIndex.end())
-        {
-            sameIndex.insert(hashValueSet[i], nullptr);
-        }
-    }
-
-    for (auto constIter = sameIndex.constBegin(); constIter != sameIndex.constEnd(); ++constIter)
-    {
-        selectFiles.push_back(files[constIter.key()]);
+        int index = constIter.key() % files.count();
+        selectFiles.push_back(files[index]);
     }
 
     return selectFiles;
