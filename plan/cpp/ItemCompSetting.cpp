@@ -110,7 +110,7 @@ void ItemCompSetting::__init_beautifyCtrls() noexcept
 
     QString title_styleSheet = " color:       #FF4500; "
                                " font-size:   22px;    "
-                               " font-weight: normal;  "
+                               " font-weight: bold;    "
                                " font-family: YouYuan  ";
 
     __title_labelCtrl_->setStyleSheet(title_styleSheet);

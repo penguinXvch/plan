@@ -35,6 +35,7 @@ void ItemCompDisplay::__init() noexcept
 {
     __init_createCtrls();
     __init_layoutCtrls();
+    __init_beautifyCtrls();
 }
 
 void ItemCompDisplay::__init_createCtrls() noexcept
@@ -48,4 +49,13 @@ void ItemCompDisplay::__init_layoutCtrls() noexcept
     __horiLayout_->addWidget(__list_);
 
     this->setLayout(__horiLayout_);
+}
+
+void ItemCompDisplay::__init_beautifyCtrls() noexcept
+{
+    QString styleSheet = " font-size:   16px;    "
+                         " font-weight: bold;    "
+                         " font-family: Consolas ";
+
+    __list_->setStyleSheet(styleSheet);
 }

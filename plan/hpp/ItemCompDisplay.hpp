@@ -27,6 +27,7 @@ private:
     void __init() noexcept;
     void __init_createCtrls() noexcept;
     void __init_layoutCtrls() noexcept;
+    void __init_beautifyCtrls() noexcept;
 };
 
 #endif // ITEMCOMPDISPLAY_HPP
