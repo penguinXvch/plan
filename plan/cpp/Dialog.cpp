@@ -101,8 +101,11 @@ void Dialog::__initSelectFolderPart_createCtrls() noexcept
 
 void Dialog::__initSelectFolderPart_decorateCtrls() noexcept
 {
-    __selectFolderPart_selectFolder_->setMinimumHeight(100);
-    __selectFolderPart_selectFolder_->setMaximumHeight(100);
+    static constexpr int offset = 50;
+    int height = dialog_initFixedSize.height() - offset;
+
+    __selectFolderPart_selectFolder_->setMinimumHeight(height);
+    __selectFolderPart_selectFolder_->setMaximumHeight(height);
 }
 
 void Dialog::__initSelectFolderPart_connectCtrlsEvents() noexcept

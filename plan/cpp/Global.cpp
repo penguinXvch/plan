@@ -11,9 +11,9 @@
 //-------------------------------------------------------------
 // Dialog
 
-QSize dialog_initFixedSize = { 600, 150 };
+QSize dialog_initFixedSize = { 800, 200 };
 int dialog_unitItemWidth = 270;
-int dialog_nonInitFixedHeight = 600;
+int dialog_nonInitFixedHeight = 800;
 QString dialog_title = QObject::tr("计划清单");
 
 QVector<QString> getAllChildDirNames() noexcept

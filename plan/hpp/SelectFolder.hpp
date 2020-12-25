@@ -35,6 +35,7 @@ private:
     void __init_decorateCtrls() noexcept;
     void __init_connectCtrlsEvents() noexcept;
     void __init_layoutCtrls() noexcept;
+    void __init_beautifyCtrls() noexcept;
 };
 
 #endif // SELECTFOLDER_HPP

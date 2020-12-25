@@ -29,6 +29,7 @@ void SelectFolder::__init() noexcept
     __init_decorateCtrls();
     __init_connectCtrlsEvents();
     __init_layoutCtrls();
+    __init_beautifyCtrls();
 }
 
 void SelectFolder::__init_createCtrls() noexcept
@@ -91,4 +92,21 @@ void SelectFolder::__init_layoutCtrls() noexcept
     __horiLayout_->addLayout(__vertLayout_);
 
     this->setLayout(__horiLayout_);
+}
+
+void SelectFolder::__init_beautifyCtrls() noexcept
+{
+    QString styleSheet = " font-size:   18px;   "
+                         " font-weight: normal; "
+                         " font-family: YouYuan ";
+
+    __labelCtrl_->setStyleSheet(styleSheet);
+    __selectBtnCtrl_->setStyleSheet(styleSheet);
+    __loadBtnCtrl_->setStyleSheet(styleSheet);
+
+    QString showPathCtrl_styleSheet = " font-size:   18px;    "
+                                      " font-weight: normal;  "
+                                      " font-family: Consolas ";
+
+    __showPathCtrl_->setStyleSheet(showPathCtrl_styleSheet);
 }
