@@ -39,6 +39,7 @@ private:
     void __init_decorateCtrls() noexcept;
     void __init_connectCtrlsEvents() noexcept;
     void __init_layoutCtrls() noexcept;
+    void __init_beautifyCtrls() noexcept;
 
 private:
     int __index_ = -1;

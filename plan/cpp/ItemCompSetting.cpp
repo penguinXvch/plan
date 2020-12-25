@@ -35,6 +35,7 @@ void ItemCompSetting::__init() noexcept
     __init_decorateCtrls();
     __init_connectCtrlsEvents();
     __init_layoutCtrls();
+    __init_beautifyCtrls();
 }
 
 void ItemCompSetting::__init_createCtrls() noexcept
@@ -93,4 +94,24 @@ void ItemCompSetting::__init_layoutCtrls() noexcept
     __vertLayout_->addWidget(__load_btnCtrl_);
 
     this->setLayout(__vertLayout_);
+}
+
+void ItemCompSetting::__init_beautifyCtrls() noexcept
+{
+    QString styleSheet = " font-size:   18px;   "
+                         " font-weight: normal; "
+                         " font-family: YouYuan ";
+
+    __curNumber_labelCtrl_->setStyleSheet(styleSheet);
+    __curNumber_lineEditCtrl_->setStyleSheet(styleSheet);
+    __addOne_btnCtrl_->setStyleSheet(styleSheet);
+    __minusOne_btnCtrl_->setStyleSheet(styleSheet);
+    __load_btnCtrl_->setStyleSheet(styleSheet);
+
+    QString title_styleSheet = " color:       #FF4500; "
+                               " font-size:   22px;    "
+                               " font-weight: normal;  "
+                               " font-family: YouYuan  ";
+
+    __title_labelCtrl_->setStyleSheet(title_styleSheet);
 }
