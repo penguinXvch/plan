@@ -20,18 +20,21 @@ public:
 
 public:
     QPushButton* getLoadBtnCtrlPointer() noexcept;
+    QPushButton* getFinishBtnCtrlPointer() noexcept;
     int getLineEditCtrlDisplayNumber() noexcept;
 
 private:
     QVBoxLayout* __vertLayout_ = nullptr;
     QHBoxLayout* __labelEdit_horiLayout_ = nullptr;
-    QHBoxLayout* __btn_horiLayout_ = nullptr;
+    QHBoxLayout* __addMinusBtns_horiLayout_ = nullptr;
+    QHBoxLayout* __loadFinishBtns_horiLayout_ = nullptr;
     QLabel* __title_labelCtrl_ = nullptr;
     QLabel* __curNumber_labelCtrl_ = nullptr;
     QLineEdit* __curNumber_lineEditCtrl_ = nullptr;
     QPushButton* __addOne_btnCtrl_ = nullptr;
     QPushButton* __minusOne_btnCtrl_ = nullptr;
     QPushButton* __load_btnCtrl_ = nullptr;
+    QPushButton* __finish_btnCtrl_ = nullptr;
 
 private:
     void __init() noexcept;

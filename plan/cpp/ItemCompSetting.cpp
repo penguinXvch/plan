@@ -24,6 +24,11 @@ QPushButton* ItemCompSetting::getLoadBtnCtrlPointer() noexcept
     return __load_btnCtrl_;
 }
 
+QPushButton* ItemCompSetting::getFinishBtnCtrlPointer() noexcept
+{
+    return __finish_btnCtrl_;
+}
+
 int ItemCompSetting::getLineEditCtrlDisplayNumber() noexcept
 {
     return __curNumber_lineEditCtrl_->text().toInt();
@@ -42,13 +47,15 @@ void ItemCompSetting::__init_createCtrls() noexcept
 {
     __vertLayout_ = new QVBoxLayout();
     __labelEdit_horiLayout_ = new QHBoxLayout();
-    __btn_horiLayout_ = new QHBoxLayout();
+    __addMinusBtns_horiLayout_ = new QHBoxLayout();
+    __loadFinishBtns_horiLayout_ = new QHBoxLayout();
     __title_labelCtrl_ = new QLabel();
     __curNumber_labelCtrl_ = new QLabel();
     __curNumber_lineEditCtrl_ = new QLineEdit();
     __addOne_btnCtrl_ = new QPushButton();
     __minusOne_btnCtrl_ = new QPushButton();
     __load_btnCtrl_ = new QPushButton();
+    __finish_btnCtrl_ = new QPushButton();
 }
 
 void ItemCompSetting::__init_decorateCtrls() noexcept
@@ -62,6 +69,7 @@ void ItemCompSetting::__init_decorateCtrls() noexcept
     __addOne_btnCtrl_->setText("+");
     __minusOne_btnCtrl_->setText("-");
     __load_btnCtrl_->setText(itemCompSetting_loadBtnText);
+    __finish_btnCtrl_->setText(itemCompSetting_finishBtnText);
 }
 
 void ItemCompSetting::__init_connectCtrlsEvents() noexcept
@@ -85,13 +93,15 @@ void ItemCompSetting::__init_layoutCtrls() noexcept
 {
     __labelEdit_horiLayout_->addWidget(__curNumber_labelCtrl_);
     __labelEdit_horiLayout_->addWidget(__curNumber_lineEditCtrl_);
-    __btn_horiLayout_->addWidget(__addOne_btnCtrl_);
-    __btn_horiLayout_->addWidget(__minusOne_btnCtrl_);
+    __addMinusBtns_horiLayout_->addWidget(__addOne_btnCtrl_);
+    __addMinusBtns_horiLayout_->addWidget(__minusOne_btnCtrl_);
+    __loadFinishBtns_horiLayout_->addWidget(__load_btnCtrl_);
+    __loadFinishBtns_horiLayout_->addWidget(__finish_btnCtrl_);
 
     __vertLayout_->addWidget(__title_labelCtrl_);
     __vertLayout_->addLayout(__labelEdit_horiLayout_);
-    __vertLayout_->addLayout(__btn_horiLayout_);
-    __vertLayout_->addWidget(__load_btnCtrl_);
+    __vertLayout_->addLayout(__addMinusBtns_horiLayout_);
+    __vertLayout_->addLayout(__loadFinishBtns_horiLayout_);
 
     this->setLayout(__vertLayout_);
 }
@@ -107,6 +117,7 @@ void ItemCompSetting::__init_beautifyCtrls() noexcept
     __addOne_btnCtrl_->setStyleSheet(styleSheet);
     __minusOne_btnCtrl_->setStyleSheet(styleSheet);
     __load_btnCtrl_->setStyleSheet(styleSheet);
+    __finish_btnCtrl_->setStyleSheet(styleSheet);
 
     QString title_styleSheet = " color:       #FF4500; "
                                " font-size:   22px;    "

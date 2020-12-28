@@ -45,6 +45,7 @@ void writeSelectedResourcePath(const QString& path) noexcept;
 extern int itemCompSetting_defaultNumber;
 extern QString itemCompSetting_curNumberText;
 extern QString itemCompSetting_loadBtnText;
+extern QString itemCompSetting_finishBtnText;
 extern QVector<QString> itemCompSetting_titleTextSet;
 
 #endif // GLOBAL_HPP
