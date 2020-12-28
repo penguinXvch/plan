@@ -16,6 +16,9 @@ public:
     explicit Item(int index, QWidget* parent = nullptr) noexcept;
     ~Item() noexcept;
 
+public:
+    void setFinish() noexcept;
+
 private:
     QVBoxLayout* __vertLayout_ = nullptr;
     ItemCompSetting* __itemCompSetting_ = nullptr;

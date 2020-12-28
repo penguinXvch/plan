@@ -17,6 +17,12 @@ Item::~Item() noexcept
 {
 }
 
+void Item::setFinish() noexcept
+{
+    __itemCompSetting_->setFinish();
+    __itemCompDisplay_->setFinish();
+}
+
 void Item::__init() noexcept
 {
     __init_createCtrls();
@@ -46,6 +52,14 @@ void Item::__init_connectCtrlsEvents() noexcept
         {
             __itemCompDisplay_->addListWidgetItem(text);
         }
+    });
+
+    connect(__itemCompSetting_->getFinishBtnCtrlPointer(), &QPushButton::clicked, [this]()
+    {
+        setFinish();
+
+        QString path = selectFolder_curPath + "/" + itemCompSetting_titleTextSet[__index_];
+        writeTodayFinishedItem(path);
     });
 }
 

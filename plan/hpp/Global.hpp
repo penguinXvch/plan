@@ -48,4 +48,7 @@ extern QString itemCompSetting_loadBtnText;
 extern QString itemCompSetting_finishBtnText;
 extern QVector<QString> itemCompSetting_titleTextSet;
 
+QVector<QString> readTodayFinishedItem() noexcept;
+void writeTodayFinishedItem(const QString& item) noexcept;
+
 #endif // GLOBAL_HPP

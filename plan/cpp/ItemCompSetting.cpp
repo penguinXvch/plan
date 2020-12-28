@@ -34,6 +34,17 @@ int ItemCompSetting::getLineEditCtrlDisplayNumber() noexcept
     return __curNumber_lineEditCtrl_->text().toInt();
 }
 
+void ItemCompSetting::setFinish() noexcept
+{
+    __curNumber_lineEditCtrl_->setEnabled(false);
+    __addOne_btnCtrl_->setEnabled(false);
+    __minusOne_btnCtrl_->setEnabled(false);
+    __load_btnCtrl_->setEnabled(false);
+    __finish_btnCtrl_->setEnabled(false);
+
+    __curNumber_lineEditCtrl_->setText("0");
+}
+
 void ItemCompSetting::__init() noexcept
 {
     __init_createCtrls();

@@ -190,3 +190,105 @@ QString itemCompSetting_curNumberText = QObject::tr("当前数量");
 QString itemCompSetting_loadBtnText = QObject::tr("筛选");
 QString itemCompSetting_finishBtnText = QObject::tr("完成");
 QVector<QString> itemCompSetting_titleTextSet;
+
+QVector<QString> readTodayFinishedItem() noexcept
+{
+    QVector<QString> item;
+
+    bool have = false;
+    QString date = QDate::currentDate().toString("yyyy.MM.dd");
+    date = "[ " + date + " ]\n";
+    QString dateBegin = "[ begin ]" + date;
+    QString dateEnd = "[  end  ]" + date;
+
+    QString __file = "finished-item.txt";
+    QString __path = QDir::currentPath() + QString("/info/");
+    __file = __path + __file;
+
+    QFile file(__file);
+
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        while (!file.atEnd())
+        {
+            QByteArray byteArray = file.readLine();
+
+            if (!byteArray.isEmpty())
+            {
+                if (dateBegin == QString(byteArray))
+                {
+                    have = true;
+                    continue;
+                }
+                else if (dateEnd == QString(byteArray))
+                {
+                    break;
+                }
+                else if (have == true)
+                {
+                    QString str = byteArray;
+                    str = str.remove(str.size() - 1, 1);
+                    item.push_back(str);
+                }
+            }
+        }
+
+        file.close();
+    }
+
+    return item;
+}
+
+void writeTodayFinishedItem(const QString& item) noexcept
+{
+    QString date = QDate::currentDate().toString("yyyy.MM.dd");
+    date = "[ " + date + " ]\n";
+    QString dateBegin = "[ begin ]" + date;
+    QString dateEnd = "[  end  ]" + date;
+
+    QString __file = "finished-item.txt";
+    QString __path = QDir::currentPath() + QString("/info/");
+    __file = __path + __file;
+
+    QDir dir;
+
+    if (!dir.exists(__path))
+    {
+        dir.mkpath(__path);
+    }
+
+    QFile file(__file);
+
+    if (file.open(QIODevice::ReadWrite | QIODevice::Text))
+    {
+        bool have = false;
+
+        while (!file.atEnd())
+        {
+            QByteArray byteArray = file.readLine();
+
+            if (!byteArray.isEmpty())
+            {
+                if (dateBegin == QString(byteArray))
+                {
+                    have = true;
+                    break;
+                }
+            }
+        }
+
+        {
+            QString data;
+            file.seek(file.size() - dateEnd.size() - 1);
+
+            if (have)
+                data = item + "\n" + dateEnd;
+            else
+                data = dateBegin + item + "\n" + dateEnd;
+
+            file.write(data.toUtf8());
+        }
+
+        file.close();
+    }
+}

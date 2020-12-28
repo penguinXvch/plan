@@ -160,6 +160,7 @@ void Dialog::__initItemSetPart_decorateCtrls() noexcept
     }
 
     QVector<QString> list = getAllChildDirNames();
+    QVector<QString> finishSet = readTodayFinishedItem();
 
     for (int index = 0; index < list.count(); ++index)
     {
@@ -167,7 +168,19 @@ void Dialog::__initItemSetPart_decorateCtrls() noexcept
 
         QString title = list[index];
         itemCompSetting_titleTextSet.push_back(title);
-        __itemSetPart_itemSet_.push_back(new Item(index));
+
+        Item* item = new Item(index);
+        __itemSetPart_itemSet_.push_back(item);
+
+        QString str = selectFolder_curPath + "/" + title;
+        for (const auto& __str: finishSet)
+        {
+            if (__str == str)
+            {
+                item->setFinish();
+                break;
+            }
+        }
     }
 }
 

@@ -19,6 +19,9 @@ public:
     void clearListWidgetItem() noexcept;
     void addListWidgetItem(const QString& text) noexcept;
 
+public:
+    void setFinish() noexcept;
+
 private:
     QHBoxLayout* __horiLayout_ = nullptr;
     QListWidget* __list_ = nullptr;

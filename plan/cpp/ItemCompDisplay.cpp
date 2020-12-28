@@ -37,6 +37,11 @@ void ItemCompDisplay::addListWidgetItem(const QString& text) noexcept
     item->setSizeHint(QSize(width, height));
 }
 
+void ItemCompDisplay::setFinish() noexcept
+{
+    clearListWidgetItem();
+}
+
 void ItemCompDisplay::__init() noexcept
 {
     __init_createCtrls();

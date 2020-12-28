@@ -23,6 +23,9 @@ public:
     QPushButton* getFinishBtnCtrlPointer() noexcept;
     int getLineEditCtrlDisplayNumber() noexcept;
 
+public:
+    void setFinish() noexcept;
+
 private:
     QVBoxLayout* __vertLayout_ = nullptr;
     QHBoxLayout* __labelEdit_horiLayout_ = nullptr;
