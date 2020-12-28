@@ -29,6 +29,12 @@ void ItemCompDisplay::addListWidgetItem(const QString& text) noexcept
 {
     QListWidgetItem* item = new QListWidgetItem(text, __list_);
     __list_->addItem(item);
+
+    static constexpr int offset = 10;
+    int width = __list_->width() - offset;
+    int height = 40;
+
+    item->setSizeHint(QSize(width, height));
 }
 
 void ItemCompDisplay::__init() noexcept
