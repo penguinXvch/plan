@@ -82,7 +82,9 @@ void Dialog::__initDialog_setIcon() noexcept
 
 void Dialog::__initDialog_hideHelpBtn() noexcept
 {
-    setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint);
+    setWindowFlags(windowFlags() &
+                   Qt::WindowMinimizeButtonHint &
+                   ~Qt::WindowContextHelpButtonHint);
 }
 
 void Dialog::__initSelectFolderPart() noexcept

@@ -12,7 +12,7 @@
 // Dialog
 
 QSize dialog_initFixedSize = { 800, 200 };
-int dialog_unitItemWidth = 270;
+int dialog_unitItemWidth = 240;
 int dialog_nonInitFixedHeight = 800;
 QString dialog_title = QObject::tr("计划清单");
 
