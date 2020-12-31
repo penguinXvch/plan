@@ -12,7 +12,7 @@
 // Dialog
 
 QSize dialog_initFixedSize = { 800, 200 };
-int dialog_unitItemWidth = 240;
+int dialog_unitItemWidth = 220;
 int dialog_nonInitFixedHeight = 800;
 QString dialog_title = QObject::tr("计划清单");
 
@@ -279,12 +279,17 @@ void writeTodayFinishedItem(const QString& item) noexcept
 
         {
             QString data;
-            file.seek(file.size() - dateEnd.size() - 1);
 
             if (have)
+            {
+                file.seek(file.size() - dateEnd.size() - 1);
                 data = item + "\n" + dateEnd;
+            }
             else
-                data = dateBegin + item + "\n" + dateEnd;
+            {
+                file.seek(file.size());
+                data = "\n" + dateBegin + item + "\n" + dateEnd;
+            }
 
             file.write(data.toUtf8());
         }
