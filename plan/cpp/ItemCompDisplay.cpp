@@ -40,6 +40,9 @@ void ItemCompDisplay::addListWidgetItem(const QString& text) noexcept
 void ItemCompDisplay::setFinish() noexcept
 {
     clearListWidgetItem();
+
+    QString styleSheet = "background-color: #AAAAAA";
+    __list_->setStyleSheet(styleSheet);
 }
 
 void ItemCompDisplay::__init() noexcept
