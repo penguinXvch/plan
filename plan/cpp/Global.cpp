@@ -97,7 +97,7 @@ QVector<QString> selectFilesAlgorithm(const QVector<QString>& files,
 
     for (int i = 0; i < number; ++i)
     {
-        qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
+        qsrand(QTime(0,0,0).msecsTo(QTime::currentTime()));
 
         int value = qAbs((qrand() & ~qrand()) ^ (qrand() << 2));
 
